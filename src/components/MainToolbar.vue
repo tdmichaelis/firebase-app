@@ -25,7 +25,7 @@
           <v-icon v-else>account_circle</v-icon>
         </v-avatar>
       </v-btn>
-      <v-list>
+      <v-list v-if="user">
               <v-list-tile v-for="(item, i) in [{title: 'Sign out', click: logout}]" :key="i" @click="item.click()">
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
               </v-list-tile>

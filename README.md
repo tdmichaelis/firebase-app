@@ -1,4 +1,4 @@
-# vue-firebase-authentication
+# vue-firebase-app
 
 > A Vue.js project with firebase
 

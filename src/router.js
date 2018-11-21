@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import SignUp from './views/SignUp.vue'
+import Strava from './views/Strava.vue'
 
 import firebase from 'firebase'
 import store from './store'
@@ -36,6 +37,11 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/strava',
+      name: 'strava',
+      component: Strava
     }
   ]
 })

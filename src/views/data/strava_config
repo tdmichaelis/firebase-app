@@ -1,0 +1,7 @@
+
+{
+    "access_token"    :"c79b44fa6ac131930a626b10b42c10c9fd7f902a"
+    , "client_id"     :"25758"
+    , "client_secret" :"e8bf8f7654c08aee8fe0c49669812899c7243c8f"
+    , "redirect_uri"  :"http://127.0.0.1:8080/#/strava"
+}

@@ -14,8 +14,9 @@
       Or Sign in using a third party app
     </p>
     <v-layout column align-center>
-      <img class="google" src="../assets/google-button.png" @click="googleSignIn" />
-    <button class="loginBtn loginBtn--facebook" @click="facebookSignIn">Sign in with Facebook</button>
+      <img class="google" src="/img/logos/google-button.png" @click="googleSignIn" />
+      <button class="loginBtn loginBtn--facebook" @click="facebookSignIn">Sign in with Facebook</button>
+      <v-btn class="loginBtn--github" @click="githubSignIn">Sign in with <img class="github-logo" src="img/logos/GitHub_Logo.png" alt=""></v-btn>
     </v-layout>
   </div>
 </template>
@@ -83,11 +84,6 @@
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 14px no-repeat;
   }
 
-  .loginBtn--facebook:hover, .loginBtn--facebook:focus {
-    background-color: #5B7BD5;
-    background-image: linear-gradient(#5B7BD5, #4864B1);
-  }
-
   button {
     margin-top: 10px;
     width: 244px;
@@ -102,6 +98,13 @@
 
     a {
       text-decoration: none;
+    }
+  }
+
+  .loginBtn--github {
+    .github-logo {
+      height: 25px;
+      margin-bottom: 5px;
     }
   }
 }
@@ -165,6 +168,28 @@ export default {
     facebookSignIn() {
       const vm = this
       var provider = new firebase.auth.FacebookAuthProvider()
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(
+          function(result) {
+            // This gives you a Google Access Token.
+            let token = result.credential.accessToken
+            // The signed-in user info.
+            let user = result.user
+            vm.setUser(result.user)
+            vm.$router.replace('home')
+          },
+          function(err) {
+            // error codes "auth/user-not-found" "auth/wrong-password" "auth/account-exists-with-different-credential"
+            console.log(err)
+            vm.errorMessage = err.message
+          }
+        )
+    },
+    githubSignIn() {
+      const vm = this
+      var provider = new firebase.auth.GithubAuthProvider()
       firebase
         .auth()
         .signInWithPopup(provider)
